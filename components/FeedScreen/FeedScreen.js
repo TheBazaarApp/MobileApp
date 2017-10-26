@@ -17,24 +17,23 @@ import { firebaseApp, database } from '../firebase/firebaseApp'
 import store from '../store/createStore'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-
+// Checkboc icons
 const checkBoxFilled = (<Icon name="check-box" size={20} color="#0f0" />)
 const checkOutline = (<Icon name="check-box-outline-blank" size={20} color="#0f0" />)
 
-//var user = firebaseApp.auth().currentUser;
-
-
 var {height, width} = Dimensions.get('window');
 
-
-const route = {
+// route to navigate to when the user taps a picture
+const closeUpRoute = {
   type: 'push',
   route: {
-    key: 'feed',
-    title: 'Feed'
+    key: 'closeup',
+    title: 'Close Up'
   }
 }
 
+// feed ListView
+// TODO: change into FlatList
 const FeedList = ({dataSource, onPress}) => {
   return <ListView
   dataSource = {dataSource}
@@ -43,23 +42,26 @@ const FeedList = ({dataSource, onPress}) => {
   />
 }
 
+// renderRow function
 function renderRow(rowData, onPress) {
   // if (rowData.unsoldItems.length === 1) {
     const item = rowData.unsoldItems[0]
     if (item.picture === null) {
-      return <NullRow price = {item.price}
+      return <NullRow
                       onPress={onPress}
+                      item={item}
             />
     }
     if (item.requestCompleted) {
-      return <SingleRow image={item.picture}
-                        price={item.price}
+      return <SingleRow
                         onPress={onPress}
+                        item={item}
              />
     }
     else {
-      return <LoadingRow price = {item.price}
+      return <LoadingRow
                          onPress = {onPress}
+                         item={item}
             />
 
     }
@@ -72,12 +74,12 @@ function renderRow(rowData, onPress) {
   // }
 }
 
+// TODO: add support for swiper rows
 const SwiperRow = ({unsoldItems, onPress}) => {
   var items = []
   for (var i=0; i < unsoldItems.length; i++) {
     const item = unsoldItems[i]
-    const row = <SingleRow image={item.picture}
-                      price={item.price}
+    const row = <SingleRow item={item}
                       onPress={onPress}
                 />
     items.push(row)
@@ -85,24 +87,27 @@ const SwiperRow = ({unsoldItems, onPress}) => {
   return
 }
 
-const LoadingRow = ({price, onPress}) => {
+// Loading feed item
+const LoadingRow = ({item, onPress}) => {
   return <View style={styles.view}>
           <TouchableHighlight
             onPress={onPress}>
             <View style={styles.view}>
               <Image
                 style={styles.image}
+                source={{uri: item.image}}
                 source={require('../placeholderImages/loadingImage.gif')}
               />
               <Text style={styles.label}>
-                {price}
+                {item.price}
               </Text>
             </View>
           </TouchableHighlight>
         </View>
 }
 
-const NullRow = ({price, onPress}) => {
+// feed item without a picture
+const NullRow = ({item, onPress}) => {
   return <View style={styles.view}>
           <TouchableHighlight
             onPress={onPress}>
@@ -112,21 +117,22 @@ const NullRow = ({price, onPress}) => {
                 source={require('../placeholderImages/imageNotFound.png')}
               />
               <Text style={styles.label}>
-                {price}
+                {item.price}
               </Text>
             </View>
           </TouchableHighlight>
         </View>
 }
 
-const SingleRow = ({image, price, onPress}) => {
+// Feed item with a single picture
+const SingleRow = ({item, onPress}) => {
   return <View style={styles.view}>
           <TouchableHighlight
             onPress={onPress}>
             <View style={styles.view}>
               <Image
                 style={styles.image}
-                source={{uri: image}}
+                source={{uri: item.image}}
                 defaultSource={
                   require('../placeholderImages/loadingImage.gif'),
                   {width},
@@ -134,32 +140,46 @@ const SingleRow = ({image, price, onPress}) => {
                 }
               />
               <Text style={styles.label}>
-                {price}
+                {item.price}
               </Text>
             </View>
           </TouchableHighlight>
         </View>
 }
 
+// TODO: Implement
+function onItemPress (item) {
+  //Navigate to close up screen
+  //Load all data
+}
 
+// Active search bar
 const SearchBarActive = connect(null, (dispatch) => ({
   onSearchChange: (text) => {
     dispatch(searchFeed(text));
   }
 }))(SearchBar);
 
+// Data source for the feed
 const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
+// Filter for feed searching
+// TODO: Implement this for proper searching
 const getVisibleFeed = (feed, filter) => {
   return feed.filter(t => t.unsoldItems[0].name.includes(filter))
 }
 
-const FeedData = connect((state) =>({
+// Feed connected with state
+const FeedData = connect((state) => ({
     dataSource: ds.cloneWithRows(state.feedReducer.albums)
   }),
   (dispatch) => ({
-    onPress: console.log("We pressed a feed item!!")
+    onPress: handleNavigate(closeUpRoute)
   }))(FeedList)
+
+function handleNavigate(route) {
+
+}
 
 const FeedScreen = ({_handleNavigate, _goBack}) => (
   <View style={styles.container}>

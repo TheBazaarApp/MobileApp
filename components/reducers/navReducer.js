@@ -9,8 +9,8 @@ const initialState = {
   key: 'root',
   routes: [
     {
-      key: 'signup',
-      title: 'sign up'
+      key: 'addnewitem',
+      title: 'Feed'
     }
   ]
 }

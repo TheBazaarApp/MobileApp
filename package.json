@@ -5,11 +5,13 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
+    "flow": "flow",
     "storybook": "storybook start -p 7007"
   },
   "dependencies": {
     "firebase": "^3.6.5",
-    "react": "15.4.2",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
     "react-native": "0.40.0",
     "react-native-camera-roll-picker": "^1.1.9",
     "react-native-checkbox": "^1.1.0",
@@ -28,6 +30,7 @@
     "babel-jest": "18.0.0",
     "babel-preset-react-native": "1.9.1",
     "eslint": "^4.0.0",
+    "flow-bin": "^0.41.0",
     "jest": "18.1.0",
     "react-dom": "^15.5.4",
     "react-test-renderer": "15.4.2"

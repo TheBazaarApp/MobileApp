@@ -58,10 +58,10 @@ class NavRoot extends Component {
       // correct things in database
 
       // State that is passed into feed FUNCTIONS
-      // TODO: pass state into the feed from the
+      // TODO: pass state into the feed from the previous screen
       var userState = {
       	albums: [],
-      	user: user, //Null when not logged in //The current default is me (Olivia)
+      	user: user, //Null when not logged in //The current default is Olivia
       	tradingList: ["hmc_edu"]
       }
       listenToColleges(userState)
@@ -74,6 +74,31 @@ class NavRoot extends Component {
               _handleNavigate={this._handleNavigate.bind(this)}
               />
     }
+
+    if (route.key == 'profile') {
+      return
+    }
+
+    if (route.key == 'editProfile') {
+      return
+    }
+
+    if (route.key == 'editProfileMapView') {
+      return
+    }
+
+    if (route.key == 'closeup') {
+      return <CloseUpView _goBack={this._handleBackAction.bind(this)}
+              _handleNavigate={this._handleNavigate.bind(this)}
+              />
+    }
+    if (route.key == 'viewAlbums') {
+      return
+    }
+    if (route.key == 'viewItems') {
+      return
+    }
+    
   }
 
   _handleBackAction () {
@@ -166,7 +191,7 @@ function createAlbum(snapshot, college) { //TODO: For the moment, we're not coun
 		sellerName: snapshot.child('albumDetails/sellerName').val(),
 		sellerCollege: college,
 		locationLat: snapshot.child('albumDetails/locationLat').val(), //TODO: Coult be problematic if these don't exist
-		locationLong: snapshot.child('albumDetails/sellerName').val(),
+		locationLong: snapshot.child('albumDetails/locationLong').val(),
 		location: snapshot.child('albumDetails/location').val(),
 		timestamp: snapshot.child('albumDetails/timestamp').val()
 	};
@@ -180,7 +205,8 @@ function createAlbum(snapshot, college) { //TODO: For the moment, we're not coun
 			name: itemInfo.child('name').val(),
 			price: itemInfo.child('price').val(),
 			picture: 'https://firebasestorage.googleapis.com/v0/b/bubbleu-app.appspot.com/o/hmc_edu%2Fuser%2F3eeJ7tnMZNSq4eF2LkpVGnpPe2q2%2Fimages%2F-KUKRtdbPJsNtr3WytVk?alt=media&token=e9a04c2b-7f00-4456-8adb-d88ab8d6b856', //TODO: take this out
-			hasPic: true, //Default, ISOs may be exceptions to this
+      sellerName: snapshot.child('albumDetails/sellerName').val(),
+      hasPic: true, //Default, ISOs may be exceptions to this
       requestCompleted: false
 		}
 		//Some ISOs don't have pics

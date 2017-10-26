@@ -1,7 +1,7 @@
 
 const initialState = {
   profileName: '',
-  defaultLocationText = '',
+  defaultLocationText: '',
   longitude: '',
   latitude: '',
   profilePic: require('../placeholderImages/loadingImage.gif')
@@ -25,3 +25,4 @@ export default (state = initialState, action) => {
     case EDITED_NAME:
       return {...state, profileName: action.text}
   }
+}

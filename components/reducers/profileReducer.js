@@ -3,7 +3,7 @@ const initialState = {
   rating: [0, 0, 0, 0, 0],
   unsoldItems: [],
   soldItems: [],
-  purchasedItems: []
+  purchasedItems: [],
   profilePic: require('../placeholderImages/loadingImage.gif')
 }
 

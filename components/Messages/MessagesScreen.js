@@ -198,7 +198,6 @@ export default class Example extends React.Component {
       }
     }
     else {
-      console.log("Fuckkkk")
       newMessageReceiver = {
         _id: messageKeyReceiver,
         text: messages[0].text,

@@ -1,6 +1,7 @@
 import { createStore } from 'redux'
 import rootReducer from '../reducers'
 
+// Configures store from reducers
 export default function configureStore () {
   const store = createStore(rootReducer)
 

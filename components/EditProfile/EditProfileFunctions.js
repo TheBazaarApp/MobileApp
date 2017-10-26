@@ -11,7 +11,6 @@ function getEditProfilePath (user) {
 function getDefaultLoc (user) {
   getEditProfilePath(user).on('value', function(snapshot) {
     if (snapshot) {
-      console.log("Got a snapshot!" + snapshot);
       const loc = snapshot.val().defaultLocation
       const lat = snapshot.val().defaultLatitude
       const long = snapshot.val().defaultLongitude

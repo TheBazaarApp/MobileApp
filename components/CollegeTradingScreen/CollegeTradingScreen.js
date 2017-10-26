@@ -95,10 +95,10 @@ const CollegeTradingScreen = ({_handleNavigate, _goBack, college}) => (
         height={44}
         titleColor={'#fff'}
         backgroundColor={'#149be0'}
-        leftButtonTitle={'back'}
+        leftButtonTitle={'Back'}
         leftButtonTitleColor={'#fff'}
         onLeftButtonPress={_goBack}
-        rightButtonTitle={'save'}
+        rightButtonTitle={'Save'}
         rightButtonTitleColor={'#fff'}
         onRightButtonPress={() => saveInDatabase(_handleNavigate, college)}
       />

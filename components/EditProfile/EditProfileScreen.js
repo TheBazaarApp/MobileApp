@@ -11,6 +11,7 @@ import {
 import { firebaseApp } from '../firebase/firebaseApp'
 import NavigationBar from 'react-native-navigation-bar';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import MapView from 'react-native-maps';
 
 const route = {
   type: 'push',
@@ -89,7 +90,7 @@ const ProfilePicContainer = connect((state) => ({
 }))(ProfilePic)
 
 const DefaultLocationTextContainer = connect((state) => ({
-  text: state.editProfileReducer.profileName
+  text: state.editProfileReducer.defaultLocationText;
 }))(DefaultLocationText)
 
 const styles = StyleSheet.create({
