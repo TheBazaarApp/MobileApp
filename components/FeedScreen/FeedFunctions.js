@@ -17,6 +17,7 @@ function listenToColleges(userState) {
 }
 
 // TODO: Maybe hide image until it shows up
+
 function createChildAddedListener(feedRef, college) {
 	//const improveFeedRef = feedRef.queryOrderedByChild("albumDetails/timestamp");
 

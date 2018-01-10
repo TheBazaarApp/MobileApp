@@ -90,6 +90,7 @@ class NavRoot extends Component {
     if (route.key == 'closeup') {
       return <CloseUpView _goBack={this._handleBackAction.bind(this)}
               _handleNavigate={this._handleNavigate.bind(this)}
+              _item{route.item}
               />
     }
     if (route.key == 'viewAlbums') {
@@ -98,7 +99,7 @@ class NavRoot extends Component {
     if (route.key == 'viewItems') {
       return
     }
-    
+
   }
 
   _handleBackAction () {

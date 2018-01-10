@@ -258,7 +258,7 @@ const AddNewItemScreen = ({_handleNavigate, _goBack}) => (
                       onPress={openCamera}
                       icon={addIcon}
                       />
-    <AlbumName style={styles.albumName} input='albumName'/>
+    <AlbumName style={styles.albumName} placeholder='albumName'/>
     <AddNewItemData />
     <TagAllFilter style={styles.tagAll} />
     <ActiveIsoCheck containerStyle={styles.isoCheckBox}/>
